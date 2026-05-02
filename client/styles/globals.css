@@ -1,0 +1,82 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: 0 0% 100%;
+  --fg: 0 0% 0%;
+  --muted: 0 0% 45%;
+  --border: 0 0% 95%;
+}
+
+html, body { 
+  background: white; 
+  color: black; 
+  -webkit-font-smoothing: antialiased;
+}
+
+body { 
+  font-family: 'Inter', system-ui, sans-serif; 
+}
+
+/* EditorJS minimal overrides */
+.ce-block__content, 
+.ce-toolbar__content { 
+  max-width: 100% !important; 
+}
+
+.notion-editor {
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.ce-header {
+  padding: 1em 0 0.5em 0;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.ce-paragraph {
+  padding: 0.4em 0;
+  line-height: 1.6;
+  white-space: pre-wrap;
+}
+
+.codex-editor__redactor {
+  padding-bottom: 30vh !important;
+}
+
+/* Hide EditorJS badge */
+.ce-settings__plugin-zone, .ce-settings__default-zone {
+  border-radius: 8px;
+}
+
+.ce-toolbar__plus, .ce-toolbar__settings-btn {
+  color: #999;
+  transition: all 0.2s;
+}
+
+.ce-toolbar__plus:hover, .ce-toolbar__settings-btn:hover {
+  background-color: #f5f5f5;
+  color: #000;
+}
+
+.cursor-display {
+  pointer-events: none;
+  z-index: 50;
+}
+
+::selection {
+  background: #f0f0f0;
+}
+
+.presence-pulse { 
+  animation: pulse 2s ease-in-out infinite; 
+}
+
+@keyframes pulse { 
+  0%, 100% { transform: scale(1); opacity: 1; } 
+  50% { transform: scale(1.05); opacity: 0.9; } 
+}
+

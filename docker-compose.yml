@@ -1,0 +1,31 @@
+version: "3.9"
+services:
+  mongo:
+    image: mongo:7
+    restart: unless-stopped
+    ports: ["27017:27017"]
+    volumes:
+      - mongo_data:/data/db
+
+  server:
+    build: ./server
+    restart: unless-stopped
+    depends_on: [mongo]
+    environment:
+      PORT: 4000
+      MONGO_URI: mongodb://mongo:27017/collabpad
+      JWT_SECRET: change-me-in-production-please
+      CLIENT_ORIGIN: http://localhost:3000
+    ports: ["4000:4000"]
+
+  client:
+    build: ./client
+    restart: unless-stopped
+    depends_on: [server]
+    environment:
+      NEXT_PUBLIC_API_URL: http://localhost:4000
+      NEXT_PUBLIC_SOCKET_URL: http://localhost:4000
+    ports: ["3000:3000"]
+
+volumes:
+  mongo_data:
